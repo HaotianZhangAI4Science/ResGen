@@ -1,3 +1,5 @@
+Sorry I was recently infected by the Covid-19, the complete code will be updated in a week or so.
+
 ResGen: A Pocket-aware 3D Molecular Generation Model Based on Parallel Multi-scale Modeling
 
 <div align=center>
