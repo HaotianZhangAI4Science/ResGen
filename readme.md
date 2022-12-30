@@ -50,11 +50,11 @@ Or you can follow the data processing procedure in [SBDD](https://github.com/luo
 
 Then follow the convention in the data directory.  
 
-or you can download the processed data [here](). 
+or you can download the processed data [lmdb](https://drive.google.com/file/d/1Cfr6DRl6U4RlrbX3b5Q1eg4syWfFD1uS/view?usp=share_link), [key](https://drive.google.com/file/d/1C5baYF06_iGBXYLLEu45JqVL9vPf1mwH/view?usp=sharing), and [name2id](https://drive.google.com/file/d/1TfFjfBebakUBE-GVnxUKAZuKK5zRlEEW/view?usp=sharing). 
 
 # Training 
 
-The training process is released as train.py, the following command is an example about how to train a model.
+The training process is released as train.py, the following command is an example of how to train a model.
 
 ```python
 python train.py --config ./configs/train_res.yml --logdir logs
