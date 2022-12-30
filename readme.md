@@ -64,8 +64,17 @@ python train.py --config ./configs/train_res.yml --logdir logs
 
 # Generation
 
+```python
+python generation/generation.py
+```
 
+You can also follow the guide at generation/generation.ipynb 
 
+We provide the 14gs as the example
+
+<div align=center>
+<img src="./generation/example.png" width="50%" height="50%" alt="TOC" align=center />
+</div>
 # Acknowledge
 
 This project draws in part from [GraphBP](https://github.com/divelab/GraphBP) and [Pocket2Mol](https://github.com/pengxingang/Pocket2Mol) , supported by GPL-v3 License and MIT License. Thanks for their great work and code, hope readers of interest could check their work, too.  
