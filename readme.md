@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 :loudspeaker: ResGen: A Pocket-aware 3D Molecular Generation Model Based on Parallel Multi-scale Modeling
+=======
+ResGen: A Pocket-aware 3D Molecular Generation Model Based on Parallel Multi-scale Modeling
+>>>>>>> 0f72a5b3f281d750b0363be81e3d0ccaef528dec
 
 <div align=center>
 <img src="./figures/toc.png" width="50%" height="50%" alt="TOC" align=center />
