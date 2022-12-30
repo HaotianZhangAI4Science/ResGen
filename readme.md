@@ -43,7 +43,7 @@ wget https://bits.csb.pitt.edu/files/it2_tt_0_lowrmsd_mols_train0_fixed.types -P
 wget https://bits.csb.pitt.edu/files/it2_tt_0_lowrmsd_mols_test0_fixed.types -P data/crossdock2020/
 ```
 
-Or you can follow the data processing procedure in [SBDD]([3D-Generative-SBDD/data at main · luost26/3D-Generative-SBDD (github.com)](https://github.com/luost26/3D-Generative-SBDD/tree/main/data)).  
+Or you can follow the data processing procedure in [SBDD](https://github.com/luost26/3D-Generative-SBDD/tree/main/data). 
 
 > 1. Download the dataset archive `crossdocked_pocket10.tar.gz` and the split file `split_by_name.pt` from [this link](https://drive.google.com/drive/folders/1CzwxmTpjbrt83z_wBzcQncq84OVDPurM).
 > 2. Extract the TAR archive using the command: `tar -xzvf crossdocked_pocket10.tar.gz`.
@@ -68,7 +68,7 @@ python train.py --config ./configs/train_res.yml --logdir logs
 
 # Acknowledge
 
-This project draws in part from [GraphBP]([divelab/GraphBP: Official implementation of "Generating 3D Molecules for Target Protein Binding" [ICML2022 Long Presentation\] (github.com)](https://github.com/divelab/GraphBP)) and [Pocket2Mol]([pengxingang/Pocket2Mol: Pocket2Mol: Efficient Molecular Sampling Based on 3D Protein Pockets (github.com)](https://github.com/pengxingang/Pocket2Mol)) , supported by GPL-v3 License and MIT License. Thanks for their great work and code, hope readers of interest could check their work, too.  
+This project draws in part from [GraphBP](https://github.com/divelab/GraphBP) and [Pocket2Mol](https://github.com/pengxingang/Pocket2Mol) , supported by GPL-v3 License and MIT License. Thanks for their great work and code, hope readers of interest could check their work, too.  
 
 
 
