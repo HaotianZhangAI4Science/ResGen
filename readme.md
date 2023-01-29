@@ -43,7 +43,11 @@ wget https://bits.csb.pitt.edu/files/it2_tt_0_lowrmsd_mols_train0_fixed.types -P
 wget https://bits.csb.pitt.edu/files/it2_tt_0_lowrmsd_mols_test0_fixed.types -P data/crossdock2020/
 ```
 
+#### Download the Processed Data
+
 You can download the processed data from [this link](https://drive.google.com/drive/folders/1CzwxmTpjbrt83z_wBzcQncq84OVDPurM). 
+
+Note: [index.pkl](https://github.com/HaotianZhangAI4Science/ResGen/tree/main/data/crossdocked_pocket10), [crossdocked_pocket10_name2id.pt](https://github.com/HaotianZhangAI4Science/ResGen/tree/main/data)
 
 Or you can follow the data processing procedure in [SBDD](https://github.com/luost26/3D-Generative-SBDD/tree/main/data). 
 
