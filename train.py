@@ -16,7 +16,7 @@ from utils.transforms import *
 from utils.train import *
 
 from models.ResGen import ResGen
-from utils.datasets.res2mol import Res2MolDataset
+from utils.datasets.ResGen import ResGenDataset
 from utils.misc import get_new_log_dir
 from utils.train import get_model_loss
 from time import time
@@ -26,6 +26,7 @@ parser.add_argument('--config', type=str, default='/home/haotian/molecules_confs
 parser.add_argument('--device', type=str, default='cuda')
 parser.add_argument('--logdir', type=str, default='/home/haotian/molecules_confs/Protein_test/Pocket2Mol-main/logs')
 args = parser.parse_args([])
+
 base_path = '/home/haotian/Molecule_Generation/Res2Mol'
 
 args.config = os.path.join(base_path, 'configs/train_res.yml')
@@ -63,7 +64,7 @@ transform = Compose([
     contrastive_sampler,
 ])
 
-dataset = Res2MolDataset(transform=transform)
+dataset = ResGenDataset(transform=transform)
 split_by_name = torch.load(os.path.join(base_path,'data/split_by_name.pt'))
 split = {
     k: [dataset.name2id[n] for n in names if n in dataset.name2id]
@@ -76,7 +77,7 @@ collate_exclude_keys = ['ligand_nbh_list']
 val_loader = DataLoader(val_set, config.train.batch_size, shuffle=False,  exclude_keys = collate_exclude_keys)
 train_loader = DataLoader(train_set, config.train.batch_size, shuffle=False,  exclude_keys = collate_exclude_keys)
 
-model = Res2Mol(
+model = ResGen(
     config.model, 
     num_classes = contrastive_sampler.num_elements,
     num_bond_types = edge_sampler.num_bond_types,
@@ -136,7 +137,7 @@ def load(checkpoint, epoch=None, load_optimizer=False, load_scheduler=False):
             for state in optimizer.state.values():
                 for k, v in state.items():
                     if isinstance(v, torch.Tensor):
-                        state[k] = v.cuda(args.devicedevice)
+                        state[k] = v.cuda(args.device)
     return state['best_loss']
 
 def train(verbose=1, num_epoches = 300):
@@ -209,4 +210,6 @@ def train(verbose=1, num_epoches = 300):
                             'best_loss': best_loss
                         }, ckpt_path)                      
         torch.cuda.empty_cache()
+
+
 train()
