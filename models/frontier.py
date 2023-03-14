@@ -2,7 +2,7 @@ import torch
 from torch.nn import Module, Sequential
 from torch.nn import functional as F
 
-from .invariant import GVPerceptronVN, GVLinear
+from .utils import GVPerceptronVN, GVLinear
 
 
 class FrontierLayerVN(Module):

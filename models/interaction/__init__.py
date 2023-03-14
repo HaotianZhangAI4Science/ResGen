@@ -1,7 +1,7 @@
 from .cftfm import CFTransformerEncoderVN
 
 
-def get_encoder_vn(config):
+def get_interaction_vn(config):
     if config.name == 'cftfm':
         return CFTransformerEncoderVN(
             hidden_channels = [config.hidden_channels, config.hidden_channels_vec],

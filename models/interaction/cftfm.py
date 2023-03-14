@@ -4,7 +4,7 @@ from torch_scatter import scatter_sum
 from math import pi as PI
 
 from models.common import GaussianSmearing, EdgeExpansion
-from models.invariant import GVLinear, VNLeakyReLU, MessageModule
+from models.utils import GVLinear, VNLeakyReLU, MessageModule
 
 class CFTransformerEncoderVN(Module):
     

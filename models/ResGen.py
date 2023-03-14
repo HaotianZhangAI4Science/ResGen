@@ -3,7 +3,7 @@ from torch.nn import Module
 from torch.nn import functional as F
 from torch import nn
 from .embedding import GVP
-from .encoders import get_encoder_vn
+from .interaction import get_interaction_vn
 from .fields import get_field_vn
 from .frontier import FrontierLayerVN
 from .position import PositionPredictor
@@ -17,7 +17,6 @@ def embed_compose_GVP(compose_feature, compose_vec, idx_ligand, idx_protein,
 
     protein_nodes = (compose_feature[idx_protein], compose_vec[idx_protein])
     ligand_nodes = (compose_feature[idx_ligand][:,:ligand_atom_feature]  ,compose_vec[idx_ligand][:,0,:].unsqueeze(-2))
-    
     h_protein = protein_res_emb(protein_nodes)
     h_ligand = ligand_atom_emb(ligand_nodes)
     
@@ -28,7 +27,7 @@ def embed_compose_GVP(compose_feature, compose_vec, idx_ligand, idx_protein,
     return [h_sca, h_vec]
 
 
-class Res2Mol(Module):
+class ResGen(Module):
     '''
     :protein_res_feature_dim : a tuple which contains the scalar dim of input feature in the first place and the vector dim of input feature in the second place
      default:(27, 3) 6(dihedral)+20(AA)+1(is_mol_atom)
@@ -45,7 +44,7 @@ class Res2Mol(Module):
         self.protein_res_emb = GVP(protein_res_feature_dim, self.emb_dim)
         self.ligand_atom_emb = GVP(ligand_atom_feature_dim, self.emb_dim)
 
-        self.encoder = get_encoder_vn(config.encoder)
+        self.encoder = get_interaction_vn(config.encoder)
         in_sca, in_vec = self.encoder.out_sca, self.encoder.out_vec
         self.field = get_field_vn(config.field, num_classes=num_classes, num_bond_types=num_bond_types, 
                                              in_sca=in_sca, in_vec=in_vec)

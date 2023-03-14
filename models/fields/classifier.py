@@ -5,7 +5,7 @@ from torch_scatter import scatter_add, scatter_softmax, scatter_sum
 from math import pi as PI
 
 from ..common import GaussianSmearing, EdgeExpansion
-from ..invariant import GVLinear, GVPerceptronVN, MessageModule
+from ..utils import GVLinear, GVPerceptronVN, MessageModule
 
 class SpatialClassifierVN(Module):
 
