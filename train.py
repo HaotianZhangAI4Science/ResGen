@@ -6,11 +6,8 @@ import argparse
 from tqdm.auto import tqdm
 import torch
 from torch.nn.utils import clip_grad_norm_
-# import torch_geometric
-# assert not torch_geometric.__version__.startswith('2'), 'Please use torch_geometric lower than version 2.0.0'
 from torch_geometric.loader import DataLoader
 from torch_geometric.transforms import Compose
-#from models.maskfill import MaskFillModelVN
 from utils.datasets import *
 from utils.transforms import *
 from utils.train import *
