@@ -1,0 +1,1 @@
+Finally, this folder contains the ./crossdocked_pocket10, ./crossdocked_pocket10_name2id.pt, ./crossdocked_pocket10_processed.lmdb, ./crossdocked_pocket10_processed.lmdb-lock, ./split_by_name.pt. 

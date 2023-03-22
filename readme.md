@@ -34,6 +34,8 @@ mamba install pyyaml easydict python-lmdb -c conda-forge
 
 The main data for training is CrossDock2020, which is utilized by most of the methods. 
 
+**Note: data is only necessary for training. For use-only mode, please directly check the generation part.**  
+
 #### Download the data from the original source
 
 ```python
@@ -47,7 +49,7 @@ wget https://bits.csb.pitt.edu/files/it2_tt_0_lowrmsd_mols_test0_fixed.types -P 
 
 You can download the processed data from [this link](https://drive.google.com/drive/folders/1CzwxmTpjbrt83z_wBzcQncq84OVDPurM). 
 
-Note: [index.pkl](https://github.com/HaotianZhangAI4Science/ResGen/tree/main/data/crossdocked_pocket10), [crossdocked_pocket10_name2id.pt](https://github.com/HaotianZhangAI4Science/ResGen/tree/main/data)
+Note: [index.pkl](https://github.com/HaotianZhangAI4Science/ResGen/tree/main/data/crossdocked_pocket10), [crossdocked_pocket10_name2id.pt](https://github.com/HaotianZhangAI4Science/ResGen/tree/main/data), [split_by_name](https://github.com/HaotianZhangAI4Science/ResGen/tree/main/data). are automatically downloaded with code.  
 
 Or you can follow the data processing procedure in [SBDD](https://github.com/luost26/3D-Generative-SBDD/tree/main/data). 
 
@@ -70,6 +72,8 @@ python train.py --config ./configs/train_res.yml --logdir logs
 
 # Generation
 
+The trained model's parameters could be downloaded [here](https://drive.google.com/file/d/1bUBNDNc0ZzcG4WgY18aQB0PEVOO6RRQQ/view?usp=share_link).  
+
 ```python
 python generation/generation.py
 ```
@@ -79,11 +83,12 @@ You can also follow the guide at generation/generation.ipynb
 We provide the 14gs as the example
 
 <div align=center>
-<img src="./generation/example.png" width="50%" height="50%" alt="TOC" align=center />
+<img src="./figures/example.png" width="50%" height="50%" alt="TOC" align=center />
 </div>
 
+
 # Acknowledge
-This project draws in part from [GraphBP](https://github.com/divelab/GraphBP) and [Pocket2Mol](https://github.com/pengxingang/Pocket2Mol) , supported by GPL-v3 License and MIT License. Thanks for their great work and code, hope readers of interest could check their work, too.  
+This project draws in part from [GraphBP](https://github.com/divelab/GraphBP) and [Pocket2Mol](https://github.com/pengxingang/Pocket2Mol), supported by GPL-v3 License and MIT License. Thanks for their great work and code, hope readers of interest could check their work, too.  
 
 
 
