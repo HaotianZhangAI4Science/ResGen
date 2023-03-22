@@ -17,20 +17,16 @@ from torch_geometric.utils.subgraph import subgraph
 from torch_geometric.nn import knn, radius
 from torch_geometric.utils.num_nodes import maybe_num_nodes
 from torch_scatter import scatter_add
-# import multiprocessing as multi
-# from torch_geometric.data import DataLoader
 try:
     from .data import ProteinLigandData
     from .datasets import *
     from .misc import *
-    from .train import inf_iterator
-    from .protein_ligand import ATOM_FAMILIES
+    from .pdb_parser import ATOM_FAMILIES
 except:
     from utils.data import ProteinLigandData
     from utils.datasets import *
     from utils.misc import *
-    from utils.train import inf_iterator
-    from utils.protein_ligand import ATOM_FAMILIES
+    from utils.pdb_parser import ATOM_FAMILIES
 import argparse
 import logging
 
@@ -199,19 +195,6 @@ class FocalBuilder(object):
             y_protein_frontier[torch.unique(idx_focal_in_protein)] = True
             data.y_protein_frontier = y_protein_frontier
             
-        
-        # generate not positions: around pos_focal ( with `max_bond_length` distance) but not close to true generated within `close_threshold` 
-        # pos_focal = ligand_context_pos[idx_focal_in_ligand_context]
-        # pos_notgenerate = pos_focal + torch.randn_like(pos_focal) * self.max_bond_length  / 2.4
-        # dist = torch.norm(pos_generate - pos_notgenerate, p=2, dim=-1)
-        # ind_close = (dist < self.close_threshold)
-        # while ind_close.any():
-        #     new_pos_notgenerate = pos_focal[ind_close] + torch.randn_like(pos_focal[ind_close]) * self.max_bond_length  / 2.3
-        #     dist[ind_close] = torch.norm(pos_generate[ind_close] - new_pos_notgenerate, p=2, dim=-1)
-        #     pos_notgenerate[ind_close] = new_pos_notgenerate
-        #     ind_close = (dist < self.close_threshold)
-        # data.pos_notgenerate = pos_notgenerate
-
         return data
 
 

@@ -321,7 +321,7 @@ def process_PDB(protein_fn):
     protein_dict = get_protein_feature(clean_res_list)
     return protein_dict
 
-def process_PDB_v2(protein_fn):
+def parse_PDB_v2(protein_fn):
     parser = PDBParser(QUIET=True)
     rec_structure = parser.get_structure("pocket", protein_fn)
     res_list = list(rec_structure.get_residues())

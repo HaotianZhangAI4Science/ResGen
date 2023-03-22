@@ -17,16 +17,6 @@ def repeat_batch(batch: Batch, num_repeat) -> Batch:
         new_data += copy.deepcopy(datas)
     return Batch.from_data_list(new_data)
 
-
-def inf_iterator(iterable):
-    iterator = iterable.__iter__()
-    while True:
-        try:
-            yield iterator.__next__()
-        except StopIteration:
-            iterator = iterable.__iter__()
-
-
 def get_optimizer(cfg, model):
     if cfg.type == 'adam':
         return torch.optim.Adam(

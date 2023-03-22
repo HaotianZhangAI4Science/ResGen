@@ -1,4 +1,3 @@
-# providing config and logs path are enough
 # python train.py --config ./configs/train_res.yml --logdir logs
 import os
 import shutil
@@ -13,7 +12,7 @@ from utils.transforms import *
 from utils.train import *
 
 from models.ResGen import ResGen
-from utils.datasets.ResGen import ResGenDataset
+from utils.datasets.resgen import ResGenDataset
 from utils.misc import get_new_log_dir
 from utils.train import get_model_loss
 from time import time
@@ -22,6 +21,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--config', type=str, default='./configs/train_res.yml')
 parser.add_argument('--device', type=str, default='cuda')
 parser.add_argument('--logdir', type=str, default='./logs')
+parser.add_argument('--split', type=str, default='./data/split_by_name.pt')
 args = parser.parse_args()
 config = load_config(args.config)
 config_name = os.path.basename(args.config)[:os.path.basename(args.config).rfind('.')]
@@ -55,7 +55,7 @@ transform = Compose([
 ])
 
 dataset = ResGenDataset(transform=transform)
-split_by_name = torch.load(os.path.join(base_path,'data/split_by_name.pt'))
+split_by_name = torch.load(args.split)
 split = {
     k: [dataset.name2id[n] for n in names if n in dataset.name2id]
     for k, names in split_by_name.items()

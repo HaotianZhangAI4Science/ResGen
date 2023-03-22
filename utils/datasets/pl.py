@@ -5,10 +5,10 @@ import torch
 from torch.utils.data import Dataset
 from tqdm.auto import tqdm
 
-from ..protein_ligand import PDBProtein, parse_sdf_file
-from ..data import ProteinLigandData, torchify_dict
+from utils.feats import parse_sdf_file
+from utils.pdb_parser import PDBProtein
+from utils.data import ProteinLigandData, torchify_dict
 
-#所有的数据处理都发生在这里啦
 class PocketLigandPairDataset(Dataset):
 
     def __init__(self, raw_path, transform=None):

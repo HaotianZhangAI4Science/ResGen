@@ -109,3 +109,8 @@ def unique(x, dim=None):
                         device=inverse.device)
     inverse, perm = inverse.flip([0]), perm.flip([0])
     return unique, inverse.new_empty(unique.size(dim)).scatter_(0, inverse, perm)
+
+def transform_data(data, transform):
+    if transform is not None:
+        data = transform(data)
+    return data
