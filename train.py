@@ -19,20 +19,13 @@ from utils.train import get_model_loss
 from time import time
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--config', type=str, default='/home/haotian/molecules_confs/Protein_test/Pocket2Mol-main/configs/train.yml')
+parser.add_argument('--config', type=str, default='./configs/train_res.yml')
 parser.add_argument('--device', type=str, default='cuda')
-parser.add_argument('--logdir', type=str, default='/home/haotian/molecules_confs/Protein_test/Pocket2Mol-main/logs')
-args = parser.parse_args([])
-
-base_path = '/home/haotian/Molecule_Generation/Res2Mol'
-
-args.config = os.path.join(base_path, 'configs/train_res.yml')
-args.logdir = os.path.join(base_path, 'logs')
+parser.add_argument('--logdir', type=str, default='./logs')
+args = parser.parse_args()
 config = load_config(args.config)
 config_name = os.path.basename(args.config)[:os.path.basename(args.config).rfind('.')]
 seed_all(config.train.seed)
-config.dataset.path = os.path.join(base_path, 'data/crossdocked_pocket10')
-config.dataset.split = os.path.join(base_path, 'data/split_by_name.pt')
 
 log_dir = get_new_log_dir(args.logdir, prefix=config_name)
 ckpt_dir = os.path.join(log_dir, 'checkpoints')
