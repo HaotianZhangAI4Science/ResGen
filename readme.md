@@ -60,7 +60,7 @@ python process_data.py --raw_data ./data/crossdocked_pocket10
 
 #### Approach 2: Download the Processed Data
 
-or you can download the processed data [lmdb](https://drive.google.com/file/d/1Cfr6DRl6U4RlrbX3b5Q1eg4syWfFD1uS/view?usp=share_link), [key](https://drive.google.com/file/d/1C5baYF06_iGBXYLLEu45JqVL9vPf1mwH/view?usp=sharing), and [name2id](https://drive.google.com/file/d/1TfFjfBebakUBE-GVnxUKAZuKK5zRlEEW/view?usp=sharing). 
+or you can download the processed data [lmdb](https://doi.org/10.5281/zenodo.7759114), [key](https://doi.org/10.5281/zenodo.7759114), and [name2id](https://doi.org/10.5281/zenodo.7759114). 
 
 
 
