@@ -25,6 +25,8 @@ from utils.reconstruct import *
 from utils.sample import get_init, get_next, logp_to_rank_prob
 from utils.sample import STATUS_FINISHED, STATUS_RUNNING
 import shutil
+import sys
+
 def read_sdf(file):
     supp = Chem.SDMolSupplier(file)
     return [i for i in supp]
@@ -62,6 +64,11 @@ def pdb_to_pocket_data(pdb_file, box_size=10.0, mol_file=None, center=None):
     dist_threshold = box_size
     for a in center:  
         close_residues.extend(ns.search(a, dist_threshold, level='R'))
+
+    if len(close_residues) < 8:
+        print('The structures studied are not well defined, maybe the box center is invalid.')
+        return None
+    
     close_residues = Selection.uniqueify(close_residues)
     protein_dict = get_protein_feature_v2(close_residues)
 
@@ -111,6 +118,13 @@ parser.add_argument(
     help='provide center explcitly, e.g., 32.33,25.56,45.67'
 )
 
+parser.add_argument(
+    '--name_by_pdb', required=False, type=str, default=False,
+    help='as its name'
+)
+
+
+
 
 args = parser.parse_args()
 config = load_config(args.config)
@@ -147,6 +161,9 @@ if args.center is not None:
     center = np.array([[float(i) for i in args.center.split(',')]])
     data = pdb_to_pocket_data(args.pdb_file, center=center, box_size=10)
 
+if data is None:
+    sys.exit('pocket residues is None, please check the box you choose or the PDB file you upload')
+
 mask = LigandMaskAll()
 composer = Res2AtomComposer(27, ligand_featurizer.feature_dim, ckpt['config'].model.encoder.knn)
 masking = Compose([
@@ -172,8 +189,8 @@ init_data_list = get_init(data.to(args.device),   # sample the initial atoms
         threshold=config.sample.threshold
 )
 pool.queue = init_data_list
-
-print('Start to generate...')
+# print(init_data_list)
+print('Start to generate in the {}'.format(args.pdb_file))
 global_step = 0 
 while len(pool.finished) < config.sample.num_samples:
     global_step += 1
@@ -215,14 +232,18 @@ while len(pool.finished) < config.sample.num_samples:
     prob = logp_to_rank_prob(np.array([p.average_logp[2:] for p in queue_tmp]),)  # (logp_focal, logpdf_pos), logp_element, logp_hasatom, logp_bond
     n_tmp = len(queue_tmp)
     if n_tmp == 0:
-        print('This Generation has filures!')
+        print('This Generation failures!')
         break
     else:
         next_idx = np.random.choice(np.arange(n_tmp), p=prob, size=min(config.sample.beam_size, n_tmp), replace=False)
     pool.queue = [queue_tmp[idx] for idx in next_idx]
 
 # save the generation results
-task_name = args.pdb_file.split('/')[-1][:-4]
+if args.name_by_pdb:
+    task_name = args.pdb_file.split('/')[-1][:-4]
+else:
+    task_name = args.lig_file.split('/')[-1][:-4]
+
 task_dir = osp.join(args.outdir,task_name)
 os.makedirs(task_dir,exist_ok=True)
 sdf_file = os.path.join(task_dir,f'{task_name}_gen.sdf')
@@ -240,3 +261,5 @@ for j in range(len(pool['finished'])):
 
 shutil.copy(args.pdb_file,task_dir)
 print('Thanks to use ResGen')
+
+
