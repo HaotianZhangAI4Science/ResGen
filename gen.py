@@ -242,7 +242,7 @@ while len(pool.finished) < config.sample.num_samples:
 if args.name_by_pdb:
     task_name = args.pdb_file.split('/')[-1][:-4]
 else:
-    task_name = args.lig_file.split('/')[-1][:-4]
+    task_name = args.sdf_file.split('/')[-1][:-4]
 
 task_dir = osp.join(args.outdir,task_name)
 os.makedirs(task_dir,exist_ok=True)
