@@ -1,4 +1,8 @@
 # python gen.py --pdb_file ./examples/4iiy.pdb --sdf_file ./examples/4iiy_ligand.sdf --outdir ./examples
+# python gen.py --pdb_file ./examples/14gs_A_rec.pdb --sdf_file ./examples/14gs_ligand.sdf --outdir ./examples
+# python gen.py --pdb_file ./examples/3pnm_A_rec.pdb --sdf_file ./examples/3pnm_A_rec_ori.sdf --outdir ./examples
+# python gen.py --pdb_file ./examples/4rlu_A_rec.pdb --sdf_file ./examples/4rlu_A_rec_ori.sdf --outdir ./examples
+
 import os
 import argparse
 import warnings
