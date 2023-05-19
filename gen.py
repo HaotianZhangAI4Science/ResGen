@@ -233,7 +233,7 @@ while len(pool.finished) < config.sample.num_samples:
                 nexts.append(data_next)
 
         queue_tmp += nexts
-    prob = logp_to_rank_prob(np.array([p.average_logp[2:] for p in queue_tmp]),)  # (logp_focal, logpdf_pos), logp_element, logp_hasatom, logp_bond
+    prob = logp_to_rank_prob([p.average_logp[2:] for p in queue_tmp],)  # (logp_focal, logpdf_pos), logp_element, logp_hasatom, logp_bond
     n_tmp = len(queue_tmp)
     if n_tmp == 0:
         print('This Generation failures!')
