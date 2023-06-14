@@ -6,6 +6,12 @@ ResGen: A Pocket-aware 3D Molecular Generation Model Based on Parallel Multi-sca
 </div>
 ResGen is the newly developed method for 3D pocket-aware molecular generation. 
 
+<div align=center>
+<img src="./figures/96.gif" width="50%" height="50%" alt="TOC" align=center />
+</div>
+
+<center> The illustration of the generation process </center>
+
 ## Environment 
 
 ### Install via conda yaml file (cuda 11.3)
