@@ -21,7 +21,6 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--config', type=str, default='./configs/train_res.yml')
 parser.add_argument('--device', type=str, default='cuda')
 parser.add_argument('--logdir', type=str, default='./logs')
-parser.add_argument('--split', type=str, default='./data/split_by_name.pt')
 args = parser.parse_args()
 config = load_config(args.config)
 config_name = os.path.basename(args.config)[:os.path.basename(args.config).rfind('.')]
@@ -54,8 +53,8 @@ transform = Compose([
     contrastive_sampler,
 ])
 
-dataset = ResGenDataset(transform=transform)
-split_by_name = torch.load(args.split)
+dataset = ResGenDataset(raw_path=config.dataset.path, transform=transform)
+split_by_name = torch.load(config.dataset.split)
 split = {
     k: [dataset.name2id[n] for n in names if n in dataset.name2id]
     for k, names in split_by_name.items()
