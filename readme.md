@@ -66,7 +66,7 @@ or you can download the processed data [lmdb](https://doi.org/10.5281/zenodo.775
 
 # Generation
 
-The trained model's parameters could be downloaded [here](https://drive.google.com/file/d/1bUBNDNc0ZzcG4WgY18aQB0PEVOO6RRQQ/view?usp=share_link).  
+The trained model's parameters could be downloaded [here](https://drive.google.com/file/d/1RoVnHBLuPGFh2qGlCMoCRKtY-Rribp0j/view?usp=sharing).  
 
 ```python
 python gen.py --pdb_file ./examples/4iiy.pdb --sdf_file ./examples/4iiy_ligand.sdf --outdir ./examples
