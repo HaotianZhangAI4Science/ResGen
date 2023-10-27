@@ -68,7 +68,7 @@ def prepare_ligand(work_dir, lig_sdf, verbose=1):
         )
     proc.communicate()
     shutil.copy(work_mol2, now_cwd)
-    command = '''prepare_ligand -l {lig_mol2} -A hydrogens'''.format(lig_mol2=cwd_mol2)
+    command = '''prepare_ligand -l {lig_mol2}'''.format(lig_mol2=cwd_mol2)
     proc = subprocess.Popen(
             command, 
             shell=True, 
@@ -115,7 +115,7 @@ def prepare_ligand_obabel(work_dir, ligand, out_lig_name=None, mode='ph'):
                     stderr=subprocess.PIPE
                 )
     proc.communicate() 
-    return out_lig_name
+    return lig_pdbqt
 
 def sdf2centroid(sdf_file):
     supp = Chem.SDMolSupplier(sdf_file, sanitize=False)
