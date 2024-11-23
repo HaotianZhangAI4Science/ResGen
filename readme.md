@@ -98,6 +98,23 @@ This project draws in part from [GraphBP](https://github.com/divelab/GraphBP) an
 
 
 
+# Cite 
+
+If you find this work interesting, please cite
+
+```
+@article{zhang2023resgen,
+  title={ResGen is a pocket-aware 3D molecular generation model based on parallel multiscale modelling},
+  author={Zhang, Odin and Zhang, Jintu and Jin, Jieyu and Zhang, Xujun and Hu, RenLing and Shen, Chao and Cao, Hanqun and Du, Hongyan and Kang, Yu and Deng, Yafeng and others},
+  journal={Nature Machine Intelligence},
+  volume={5},
+  number={9},
+  pages={1020--1030},
+  year={2023},
+  publisher={Nature Publishing Group UK London}
+}
+```
+
 
 
 
